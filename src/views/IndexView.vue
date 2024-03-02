@@ -30,8 +30,6 @@ export default {
 .phone_layout {
     width: 18vw;
     height: 58vh;
-    min-height: 40rem;
-    min-width: 20rem;
     border-radius: 1rem;
     overflow: hidden;
     border-style: solid;
