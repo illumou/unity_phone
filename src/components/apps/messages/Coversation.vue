@@ -20,7 +20,7 @@
 
 <script lang="ts">
 
-import Message from '../messages/message.vue'
+import Message from '../messages/Message.vue'
 
 export default {
     name: 'Coversation',

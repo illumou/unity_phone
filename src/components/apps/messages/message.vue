@@ -63,4 +63,4 @@ export default {
     color:white;
 }
 
-</style>
+</style>./Message.vue
