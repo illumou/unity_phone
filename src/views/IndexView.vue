@@ -88,4 +88,4 @@ export default {
     top: 0;
 }
 
-</style>../components/phone/Notification.vue
+</style>
