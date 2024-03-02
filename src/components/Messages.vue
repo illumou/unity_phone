@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         openChatWindow(data: any) {
-            console.log(data)
             this.current_active_app = 'Conversation'
             this.userData = data
         },
@@ -35,7 +34,6 @@ export default {
     },
     watch: {
         data_from_notification(oldValue, newValue) {
-            console.log(oldValue)
             const data = {
                 username: oldValue.username
             }
