@@ -10,6 +10,9 @@ import Conversation from './apps/messages/Coversation.vue'
 
 export default {
     name: 'IndexView',
+    props: {
+        data_from_notification: Object,
+    },
     components: {
         Contacts,
         Conversation
@@ -28,6 +31,15 @@ export default {
         },
         closeChatWindow() {
             this.current_active_app = 'Contacts'
+        }
+    },
+    watch: {
+        data_from_notification(oldValue, newValue) {
+            console.log(oldValue)
+            const data = {
+                username: oldValue.username
+            }
+            this.openChatWindow(data)
         }
     }
 }

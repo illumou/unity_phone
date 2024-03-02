@@ -1,7 +1,8 @@
 <template>
     <main class="phone_layout">
+        <Notification class="notification" :class="{ active: notification_boolean }" @openChatFromNotification="forwardData"/>
         <Header class="header"/>
-        <Messages class="app"/>
+        <Messages class="app" :data_from_notification="data_from_notification"/>
     </main>
 </template>
 
@@ -9,17 +10,43 @@
 
 import Messages from '../components/Messages.vue'
 import Header from '../components/phone/Header.vue'
+import Notification from '../components/phone/Notification.vue'
 
 export default {
     name: 'IndexView',
     components: {
         Messages,
-        Header
+        Header,
+        Notification,
     },
     data() {
         return {
-            current_active_app: 'Messages'
+            current_active_app: 'Messages',
+            notification_boolean: false,
+            data_from_notification: {}
         }
+    },
+    methods: {
+        removeNotificationAfterTime() {
+            this.remove_timeout = setTimeout(() => {
+                this.notification_boolean = false
+            },  this.MiliSec2Sec(7))
+        },
+        forwardData(data: Object) {
+            this.data_from_notification = data
+            clearTimeout(this.remove_timeout)
+            this.notification_boolean = false
+
+        },
+        MiliSec2Sec(time: number) {
+            return time * 1000
+        }
+    },
+    mounted() {
+        this.create_timeout = setTimeout(() => {
+            this.notification_boolean = true
+            this.removeNotificationAfterTime()
+        }, this.MiliSec2Sec(30))
     }
 }
 
@@ -40,6 +67,7 @@ export default {
     background-color: white;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .header {
@@ -50,4 +78,14 @@ export default {
     height: 92%;
 }
 
-</style>
+.notification {
+    position: absolute;
+    top: -100%;
+    transition: top 1s ease;
+}
+
+.notification.active {
+    top: 0;
+}
+
+</style>../components/phone/Notification.vue
