@@ -40,7 +40,7 @@ export default {
 .notification_content {
     width: 80%;
     height: 70%;
-    background: rgba(255, 255, 255, 0.2);
+    background: #ffffff;
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
