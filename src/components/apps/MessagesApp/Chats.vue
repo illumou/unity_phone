@@ -51,6 +51,7 @@ export default {
         },
         scrollBottom() {
             let element = document.getElementById("chats_wrapper");
+            // @ts-ignore
             element.scrollTop = element.scrollHeight
         },
         sendMessage() {
