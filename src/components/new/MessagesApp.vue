@@ -1,0 +1,43 @@
+<template>
+    <div class="content_container">
+        <component :is="active_component" :chatData="chatData" @post:openComponent="changeComponent"/>
+    </div>
+</template>
+
+<script lang="ts">
+
+import Contacts from '../new/MessagesApp/Contacts.vue'
+import Chats from '../new/MessagesApp/Chats.vue'
+
+export default {
+    name: 'MessagesApp',
+    components: {
+        Contacts,
+        Chats
+    },
+    data() {
+        return {
+            active_component: 'Contacts',
+            chatData: {},
+        }
+    },
+    methods: {
+        changeComponent(data: {app: string, payload: object}) {
+            this.active_component = data.app
+            this.chatData = data.payload
+        }
+    }
+}
+
+</script>
+
+<style scoped>
+
+.content_container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    margin-bottom: 2dvh;
+}
+
+</style>./MessagesApp/Chats.vue
