@@ -1,12 +1,14 @@
 <template>
     <div class="chats_container" id="chats_container">
-        <Header :chatData="chatData"/>
+        <div class="chats_header">
+            <Header :chatData="chatData" @post:closeChat="closeChat"/>
+        </div>
         <div class="chats_wrapper" id="chats_wrapper">
             <Message v-for="message in messages" :message="message"/>
-            <div class="chats_footer_container">
-                <textarea class="chats_textarea" v-model="textarea_input"/>
-                <button class="chats_textarea_send" @click="sendMessage()"> Senden </button>
-            </div>
+        </div>
+        <div class="chats_footer_container">
+            <textarea class="chats_textarea" v-model="textarea_input"/>
+            <button class="chats_textarea_send" @click="sendMessage()"> Senden </button>
         </div>
     </div>
 </template>
@@ -44,11 +46,11 @@ export default {
         }
     },
     methods: {
-        closeChatWindow() {
+        closeChat() {
             this.$emit('closeChatWindow')
         },
         scrollBottom() {
-            const element = document.getElementById("chats_wrapper");
+            let element = document.getElementById("chats_wrapper");
             element.scrollTop = element.scrollHeight
         },
         sendMessage() {
@@ -81,12 +83,15 @@ export default {
 .chats_container {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .chats_wrapper {
     margin-top: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow: auto;
 }
 
 .chats_footer_container {
@@ -98,10 +103,12 @@ export default {
 .chats_textarea {
     resize: none;
     height: 8dvh;
+    font-size: clamp(14px, 1vw, 100px);
 }
 
 .chats_textarea_send {
     height: 3;
+    font-size: clamp(14px, 1vw, 100px);
 }
 
 </style>

@@ -1,13 +1,13 @@
 <template>
     <div class="content_container">
-        <component :is="active_component" :chatData="chatData" @post:openComponent="changeComponent"/>
+        <component :is="active_component" :chatData="chatData" @post:openComponent="changeComponent" @closeChatWindow="closeChat"/>
     </div>
 </template>
 
 <script lang="ts">
 
-import Contacts from '../new/MessagesApp/Contacts.vue'
-import Chats from '../new/MessagesApp/Chats.vue'
+import Contacts from '../apps/MessagesApp/Contacts.vue'
+import Chats from '../apps/MessagesApp/Chats.vue'
 
 export default {
     name: 'MessagesApp',
@@ -25,8 +25,12 @@ export default {
         changeComponent(data: {app: string, payload: object}) {
             this.active_component = data.app
             this.chatData = data.payload
+        },
+        closeChat() {
+            this.active_component = 'Contacts'
+            this.chatData = {}
         }
-    }
+    },
 }
 
 </script>

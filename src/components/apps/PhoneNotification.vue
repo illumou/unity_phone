@@ -12,7 +12,7 @@ export default {
     name: 'Notification',
     data() {
         return {
-            notificiation: {id: 1, app: 'Message', text: 'Neue Nachricht', chat_id: '1', username: 'Noah'}
+            notificiation: {id: 1, app: 'Message', text: 'Neue Nachricht', chat_id: '1', username: 'Emma Smith'}
         }
     },
     methods: {
@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style scoped>
-
 
 .wrapper {
     width: 100%;
@@ -40,17 +39,17 @@ export default {
 .notification_content {
     width: 80%;
     height: 70%;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center;
-    cursor: pointer;
 }
 
 .notification_content p {
     margin: 0;
+    font-size: clamp(14px, 1vw, 100px);
 }
 
 </style>

@@ -1,29 +1,29 @@
 <template>
-    <main class="phone_layout">
-        <Notification class="notification" :class="{ active: notification_boolean }" @openChatFromNotification="forwardData"/>
-        <Header class="header"/>
-        <Messages class="app" :data_from_notification="data_from_notification"/>
+    <main class="container">
+        <PhoneNotification class="notification" :class="{ active: notification_boolean }"/>
+        <PhoneHeader/>
+        <MessageApp/>     
     </main>
 </template>
 
 <script lang="ts">
 
-import Messages from '../components/Messages.vue'
-import Header from '../components/phone/Header.vue'
-import Notification from '../components/phone/Notification.vue'
+import PhoneHeader from '../components/apps/PhoneHeader.vue'
+import MessageApp from '../components/apps/MessagesApp.vue'
+import PhoneNotification from '../components/apps/PhoneNotification.vue'
 
 export default {
-    name: 'IndexView',
+    name: 'Index',
     components: {
-        Messages,
-        Header,
-        Notification,
+        PhoneHeader,
+        MessageApp,
+        PhoneNotification
     },
     data() {
         return {
-            current_active_app: 'Messages',
             notification_boolean: false,
-            data_from_notification: {}
+            create_timeout: 0,
+            remove_timeout: 0
         }
     },
     methods: {
@@ -31,12 +31,6 @@ export default {
             this.remove_timeout = setTimeout(() => {
                 this.notification_boolean = false
             },  this.MiliSec2Sec(7))
-        },
-        forwardData(data: Object) {
-            this.data_from_notification = data
-            clearTimeout(this.remove_timeout)
-            this.notification_boolean = false
-
         },
         MiliSec2Sec(time: number) {
             return time * 1000
@@ -52,30 +46,30 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
-.phone_layout {
-    width: 18vw;
-    height: 58vh;
-    min-height: 40rem;
-    min-width: 20rem;
-    border-radius: 1rem;
-    overflow: hidden;
-    border-style: solid;
+.container {
+    --standard_heigth: 60dvh;
+
+    height: var(--standard_heigth);
+    min-height: 31rem;
+    min-width: none;
+    aspect-ratio: 1 / 1.75;
+
+    background-color: var(--background);
+
     border-color: black;
-    border-width: 4px;
-    background-color: white;
+    border-style: solid;
+    border-radius: calc(var(--standard_heigth) * 0.05);
+    border-width: calc(var(--standard_heigth) * 0.005);
+
     display: flex;
     flex-direction: column;
+
     position: relative;
-}
+    overflow: hidden;
 
-.header {
-    height: 8%;
-}
-
-.app {
-    height: 92%;
+    font-size: clamp(14px, 1vw, 100px);
 }
 
 .notification {
