@@ -8,7 +8,7 @@
         </div>
         <div class="chats_footer_container">
             <textarea class="chats_textarea" v-model="textarea_input"/>
-            <button class="chats_textarea_send" @click="sendMessage()"> Senden </button>
+            <button class="chats_textarea_send" @click="sendMessage()"> > </button>
         </div>
     </div>
 </template>
@@ -96,19 +96,26 @@ export default {
 }
 
 .chats_footer_container {
-    padding-top: 1rem;
+    padding: 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .chats_textarea {
+    flex-grow: 1;
     resize: none;
-    height: 8dvh;
+    max-height: 6dvh;
     font-size: clamp(14px, 1vw, 100px);
+    background-color: transparent;
+    border-color: white;
+    color: var(--text_color_light);
 }
 
 .chats_textarea_send {
     height: 3;
+    background-color: transparent;
+    border: 0;
+    color: var(--text_color_light);
     font-size: clamp(14px, 1vw, 100px);
 }
 

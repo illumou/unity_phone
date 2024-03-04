@@ -2,7 +2,7 @@
     <div class="contacts_contact_container">
         <div class="contacts_contact_content">
             <p> {{ data?.username }} </p>
-            <button @click="openChat()"> (CHAT) </button>
+            <button @click="openChat()"> > </button>
         </div>
     </div>
 
@@ -41,7 +41,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5dvh;
 
     border-top-color: white;
     border-top-style: solid;
@@ -54,7 +53,6 @@ export default {
 
 .contacts_contact_content button {
     height: 100%;
-    width: 4dvw;
     color: var(--text_color_light);
     background-color: transparent;
     border: 0;
