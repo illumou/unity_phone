@@ -7,7 +7,7 @@
             <Message v-for="message in messages" :message="message"/>
         </div>
         <div class="chats_footer_container">
-            <textarea class="chats_textarea" v-model="textarea_input"/>
+            <textarea class="chats_textarea" v-model="textarea_input" @keypress.enter.prevent="sendMessage()" />
             <button class="chats_textarea_send" @click="sendMessage()"> > </button>
         </div>
     </div>
